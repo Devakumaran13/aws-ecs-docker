@@ -12,8 +12,9 @@ phases:
       - echo log in to Amazon ECR...
       - aws --version
       - echo $AWS_DEFAULT_REGION
-      - $(aws ecr get-login --no-include-email --region us-east-1)
-      - REPOSITORY_URI=<your_account_id>.dkr.ecr.us-east-1.amazonaws.com/aws-ecs-docker
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 700842340494.dkr.ecr.ap-south-1.amazonaws.com
+      - # Replace with this to your repository URI
+      - REPOSITORY_URI=700842340494.dkr.ecr.ap-south-1.amazonaws.com/aws-esc-docker
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
